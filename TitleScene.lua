@@ -19,6 +19,12 @@ function TitleScene:initialize()
 
     self.boxes:push{type='rectangle', topleft=Point(200, 200), size=Point(100, 100)}
 
+    self.boxes:push{type='polygon', points={
+                        Point(400, 200),
+                        Point(500, 100),
+                        Point(500, 200),
+                }}
+
     self.player = {loc=Point(400, 300), angle=-math.pi/2}
 end
 
@@ -51,9 +57,19 @@ function TitleScene:draw()
 
     g.setColor(75, 75, 75)
     for _, box in self.boxes:each() do
-        g.rectangle('fill',
-                    box.topleft.x, box.topleft.y,
-                    box.size.x, box.size.y)
+        if box.type == 'rectangle' then
+            g.rectangle('fill',
+                        box.topleft.x, box.topleft.y,
+                        box.size.x, box.size.y)
+        elseif box.type == 'polygon' then
+            local pts = {}
+            for _, p in ipairs(box.points) do
+                pts[#pts+1] = p.x
+                pts[#pts+1] = p.y
+            end
+
+            g.polygon('fill', unpack(pts))
+        end
     end
 
     g.setColor(140, 180, 160)
@@ -94,10 +110,89 @@ function raycast(pt, angle, shapes)
             local i = raycast_rect(pt, angle,
                                    shape.topleft, shape.size)
             if i then intersections:push(i) end
+        elseif shape.type == 'polygon' then
+            local pi = {}
+            local rvec = Point(math.cos(angle), math.sin(angle))
+
+            for i, p1 in ipairs(shape.points) do
+                local p2 = shape.points[i+1] or shape.points[1]
+                local isect = raycast_line(pt, rvec, p1, p2)
+                if isect then table.insert(pi, isect) end
+            end
+
+            if #pi > 0 then intersections:push(pi) end
         end
     end
 
     return intersections
+end
+
+function raycast_line(rpt, rvec, line1, line2)
+    -- Find the slope and y-icpt of the ray and the line
+    local rm, rb = slope_intercept(rpt, rvec)
+    local lm, lb = slope_intercept(line1, line2-line1)
+
+    local xmin = math.min(line1.x, line2.x)
+    local xmax = math.max(line1.x, line2.x)
+    local ymin = math.min(line1.y, line2.y)
+    local ymax = math.max(line1.y, line2.y)
+
+    if rm == lm then  -- parallel lines
+        ------------------------------
+        return nil
+
+    elseif line1.x == line2.x then -- vertical line special case
+        ------------------------------
+        local i = Point(line1.x, rm * line1.x + rb)
+
+        -- Is the intersection actually on the segment?
+        if i.y >= ymin and i.y <= ymax then
+            -- Is the intersection actually being pointed at by the ray?
+            local dx = i.x - rpt.x
+            if dx < 0 and rvec.x < 0 or dx > 0 and rvec.x > 0 then
+                return i
+            end
+        end
+
+    elseif math.abs(rvec.x) < 0.0001 then -- vertical ray special case
+        -- Sometimes atan2 gives us very small nonzero values, that we should really
+        -- treat as zeros because they don't work with the general algorithm, so we round.
+        -- The problem is that dx is effectively 0 so the "pointing at" check fails.
+        ------------------------------
+        local i = Point(rpt.x, lm * rpt.x + lb)
+
+        -- Is the intersection actually on the segment?
+        if i.x >= xmin and i.x <= xmax then
+            -- Is the intersection actually being pointed at by the ray?
+            local dy = i.y - rpt.y
+            if dy < 0 and rvec.y < 0 or dy > 0 and rvec.y > 0 then
+                return i
+            end
+        end
+
+    else -- Normal intersecting lines
+        ------------------------------
+        -- okay, they intersect, but where?
+        -- rm * x + rb == lm * x + lb
+        -- x == (lb - rb) / (rm - lm)
+        local ix = (lb - rb) / (rm - lm)
+
+        -- Is the intersection actually on the segment?
+        if ix >= xmin and ix <= xmax then
+
+            -- Is the intersection actually being pointed at by the ray?
+            local dx = ix - rpt.x
+            if dx < 0 and rvec.x < 0 or dx > 0 and rvec.x > 0 then
+                return Point(ix, rm*ix+rb)
+            end
+        end
+    end
+end
+
+function slope_intercept(pt, vec)
+    local m = vec.y / vec.x
+    local b = pt.y - pt.x * m
+    return m, b
 end
 
 function raycast_rect(pt, angle, topleft, size)
@@ -136,18 +231,6 @@ function raycast_rect(pt, angle, topleft, size)
 end
 
 function raycast_horiz(pt, angle, x1, x2, y)
-    -- local a1 = pt:angle_to(Point(x1, y))
-    -- local a2 = pt:angle_to(Point(x2, y))
-    -- if a1 > a2 then a1, a2 = a2, a1 end
-
-    -- if angle >= a1 and angle <= a2 then -- intersect!
-    --     local dy = y-pt.y
-    --     local r = dy / math.sin(angle)
-    --     return pt + Point(r*math.cos(angle), r*math.sin(angle))
-    -- else
-    --     return nil
-    -- end
-
     local dy = y-pt.y
     local r = dy / math.sin(angle)
     if r > 0 then
