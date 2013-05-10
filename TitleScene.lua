@@ -4,26 +4,169 @@ local Point = sonnet.Point
 
 function TitleScene:initialize()
     self.boxes = List()
-
-    self.boxes:push{type='rectangle', topleft=Point(10, 10), size=Point(32, 32)}
-    self.boxes:push{type='rectangle', topleft=Point(50, 10), size=Point(32, 32)}
-    self.boxes:push{type='rectangle', topleft=Point(90, 10), size=Point(32, 32)}
-
-    self.boxes:push{type='rectangle', topleft=Point(10, 50), size=Point(32, 32)}
-    self.boxes:push{type='rectangle', topleft=Point(50, 50), size=Point(32, 32)}
-    self.boxes:push{type='rectangle', topleft=Point(90, 50), size=Point(32, 32)}
-
-    self.boxes:push{type='rectangle', topleft=Point(10, 90), size=Point(32, 32)}
-    self.boxes:push{type='rectangle', topleft=Point(50, 90), size=Point(32, 32)}
-    self.boxes:push{type='rectangle', topleft=Point(90, 90), size=Point(32, 32)}
-
-    self.boxes:push{type='rectangle', topleft=Point(200, 200), size=Point(100, 100)}
+    
+    self.boxes:push{type='polygon', points={
+                        Point(40, 30),
+                        Point(60, 30),
+                        Point(30, 90),
+                        Point(10, 90),
+                }}
 
     self.boxes:push{type='polygon', points={
-                        Point(400, 200),
-                        Point(500, 100),
-                        Point(500, 200),
+                        Point(10, 90),
+                        Point(70, 90),
+                        Point(60, 110),
+                        Point(0, 110),
                 }}
+
+
+    self.boxes:push{type='polygon', points={
+                        Point(70, 110),
+                        Point(110, 30),
+                        Point(130, 30),
+                        Point(90, 110),
+                }}
+
+    self.boxes:push{type='polygon', points={
+                        Point(110, 30),
+                        Point(130, 30),
+                        Point(170, 110),
+                        Point(150, 110),
+                }}
+
+    self.boxes:push{type='polygon', points={
+                        Point(100, 90),
+                        Point(140, 90),
+                        Point(140, 70),
+                        Point(100, 70),
+                }}
+
+    self.boxes:push{type='polygon', points={
+                        Point(45, 20),
+                        Point(240, 20),
+                        Point(240, 10),
+                        Point(50, 10),
+                }}
+
+    self.boxes:push{type='polygon', points={
+                        Point(230, 10),
+                        Point(250, 10),
+                        Point(190, 130),
+                        Point(170, 130),
+                }}
+
+    self.boxes:push{type='polygon', points={
+                        Point(190, 120),
+                        Point(415, 120),
+                        Point(410, 130),
+                        Point(190, 130),
+                }}
+
+    self.boxes:push{type='polygon', points={
+                        Point(220, 110),
+                        Point(260, 30),
+                        Point(280, 30),
+                        Point(240, 110),
+                }}
+
+    self.boxes:push{type='polygon', points={
+                        Point(220, 110),
+                        Point(230, 90),
+                        Point(290, 90),
+                        Point(280, 110),
+                }}
+
+    self.boxes:push{type='polygon', points={
+                        Point(260, 30),
+                        Point(320, 30),
+                        Point(310, 50),
+                        Point(260, 50),
+                }}
+
+    self.boxes:push{type='polygon', points={
+                        Point(255, 80),
+                        Point(265, 60),
+                        Point(285, 60),
+                        Point(275, 80),
+                }}
+
+    self.boxes:push{type='polygon', points={
+                        Point(290, 110),
+                        Point(330, 30),
+                        Point(350, 30),
+                        Point(310, 110),
+                }}
+
+    self.boxes:push{type='polygon', points={
+                        Point(330, 30),
+                        Point(390, 30),
+                        Point(380, 50),
+                        Point(320, 50),
+                }}
+
+    self.boxes:push{type='polygon', points={
+                        Point(315, 60),
+                        Point(375, 60),
+                        Point(365, 80),
+                        Point(305, 80),
+                }}
+
+    self.boxes:push{type='polygon', points={
+                        Point(360, 50),
+                        Point(380, 50),
+                        Point(375, 60),
+                        Point(355, 60),
+                }}
+
+    self.boxes:push{type='polygon', points={
+                        Point(335, 80),
+                        Point(355, 80),
+                        Point(355, 110),
+                        Point(335, 110),
+                }}
+
+    self.boxes:push{type='polygon', points={
+                        Point(360, 110),
+                        Point(370, 90),
+                        Point(430, 90),
+                        Point(420, 110),
+                }}
+
+    self.boxes:push{type='polygon', points={
+                        Point(410, 90),
+                        Point(390, 50),
+                        Point(410, 50),
+                        Point(430, 90),
+                }}
+
+    self.boxes:push{type='polygon', points={
+                        Point(390, 50),
+                        Point(400, 30),
+                        Point(460, 30),
+                        Point(450, 50),
+                }}
+
+    -- self.boxes = List()
+
+    -- self.boxes:push{type='rectangle', topleft=Point(10, 10), size=Point(32, 32)}
+    -- self.boxes:push{type='rectangle', topleft=Point(50, 10), size=Point(32, 32)}
+    -- self.boxes:push{type='rectangle', topleft=Point(90, 10), size=Point(32, 32)}
+
+    -- self.boxes:push{type='rectangle', topleft=Point(10, 50), size=Point(32, 32)}
+    -- self.boxes:push{type='rectangle', topleft=Point(50, 50), size=Point(32, 32)}
+    -- self.boxes:push{type='rectangle', topleft=Point(90, 50), size=Point(32, 32)}
+
+    -- self.boxes:push{type='rectangle', topleft=Point(10, 90), size=Point(32, 32)}
+    -- self.boxes:push{type='rectangle', topleft=Point(50, 90), size=Point(32, 32)}
+    -- self.boxes:push{type='rectangle', topleft=Point(90, 90), size=Point(32, 32)}
+
+    -- self.boxes:push{type='rectangle', topleft=Point(200, 200), size=Point(100, 100)}
+
+    -- self.boxes:push{type='polygon', points={
+    --                     Point(400, 200),
+    --                     Point(500, 100),
+    --                     Point(500, 200),
+    --             }}
 
     self.player = {loc=Point(400, 300), angle=-math.pi/2}
 end
@@ -98,156 +241,22 @@ end
 ----------------------------------------
 
 function raycast(pt, angle, shapes)
-    -- Ensure angle is in the range of atan2;
-    -- it might be like 16*pi or something
-    local nx, ny = math.cos(angle), math.sin(angle)
-    angle = math.atan2(ny, nx)
+    local rvec = Point(math.cos(angle), math.sin(angle))
 
     local intersections = List()
 
     for _, shape in shapes:each() do
+        local pi
         if shape.type == 'rectangle' then
-            local i = raycast_rect(pt, angle,
-                                   shape.topleft, shape.size)
-            if i then intersections:push(i) end
+            pi = sonnet.Raycast.rectangle(pt, rvec,
+                                          shape.topleft,
+                                          shape.size)
         elseif shape.type == 'polygon' then
-            local pi = {}
-            local rvec = Point(math.cos(angle), math.sin(angle))
-
-            for i, p1 in ipairs(shape.points) do
-                local p2 = shape.points[i+1] or shape.points[1]
-                local isect = raycast_line(pt, rvec, p1, p2)
-                if isect then table.insert(pi, isect) end
-            end
-
-            if #pi > 0 then intersections:push(pi) end
+            pi = sonnet.Raycast.polygon(pt, rvec,
+                                        unpack(shape.points))
         end
+        if #pi > 0 then intersections:push(pi) end
     end
 
     return intersections
-end
-
-function raycast_line(rpt, rvec, line1, line2)
-    -- Find the slope and y-icpt of the ray and the line
-    local rm, rb = slope_intercept(rpt, rvec)
-    local lm, lb = slope_intercept(line1, line2-line1)
-
-    local xmin = math.min(line1.x, line2.x)
-    local xmax = math.max(line1.x, line2.x)
-    local ymin = math.min(line1.y, line2.y)
-    local ymax = math.max(line1.y, line2.y)
-
-    if rm == lm then  -- parallel lines
-        ------------------------------
-        return nil
-
-    elseif line1.x == line2.x then -- vertical line special case
-        ------------------------------
-        local i = Point(line1.x, rm * line1.x + rb)
-
-        -- Is the intersection actually on the segment?
-        if i.y >= ymin and i.y <= ymax then
-            -- Is the intersection actually being pointed at by the ray?
-            local dx = i.x - rpt.x
-            if dx < 0 and rvec.x < 0 or dx > 0 and rvec.x > 0 then
-                return i
-            end
-        end
-
-    elseif math.abs(rvec.x) < 0.0001 then -- vertical ray special case
-        -- Sometimes atan2 gives us very small nonzero values, that we should really
-        -- treat as zeros because they don't work with the general algorithm, so we round.
-        -- The problem is that dx is effectively 0 so the "pointing at" check fails.
-        ------------------------------
-        local i = Point(rpt.x, lm * rpt.x + lb)
-
-        -- Is the intersection actually on the segment?
-        if i.x >= xmin and i.x <= xmax then
-            -- Is the intersection actually being pointed at by the ray?
-            local dy = i.y - rpt.y
-            if dy < 0 and rvec.y < 0 or dy > 0 and rvec.y > 0 then
-                return i
-            end
-        end
-
-    else -- Normal intersecting lines
-        ------------------------------
-        -- okay, they intersect, but where?
-        -- rm * x + rb == lm * x + lb
-        -- x == (lb - rb) / (rm - lm)
-        local ix = (lb - rb) / (rm - lm)
-
-        -- Is the intersection actually on the segment?
-        if ix >= xmin and ix <= xmax then
-
-            -- Is the intersection actually being pointed at by the ray?
-            local dx = ix - rpt.x
-            if dx < 0 and rvec.x < 0 or dx > 0 and rvec.x > 0 then
-                return Point(ix, rm*ix+rb)
-            end
-        end
-    end
-end
-
-function slope_intercept(pt, vec)
-    local m = vec.y / vec.x
-    local b = pt.y - pt.x * m
-    return m, b
-end
-
-function raycast_rect(pt, angle, topleft, size)
-    local intersections = {}
-    local i
-
-    -- Top edge
-    i = raycast_horiz(pt, angle,
-                      topleft.x, topleft.x+size.x,
-                      topleft.y)
-
-    if i then table.insert(intersections, i) end
-
-    -- Bottom edge
-    i = raycast_horiz(pt, angle,
-                      topleft.x, topleft.x+size.x,
-                      topleft.y+size.y)
-
-    if i then table.insert(intersections, i) end
-
-    -- Left edge
-    i = raycast_vert(pt, angle,
-                     topleft.y, topleft.y+size.y,
-                     topleft.x)
-
-    if i then table.insert(intersections, i) end
-
-    -- Right edge
-    i = raycast_vert(pt, angle,
-                     topleft.y, topleft.y+size.y,
-                     topleft.x+size.x)
-
-    if i then table.insert(intersections, i) end
-
-    return intersections
-end
-
-function raycast_horiz(pt, angle, x1, x2, y)
-    local dy = y-pt.y
-    local r = dy / math.sin(angle)
-    if r > 0 then
-        local x = pt.x + r*math.cos(angle)
-        if x >= x1 and x <= x2 then
-            return pt + Point(r*math.cos(angle), r*math.sin(angle))
-        end
-    end
-end
-
-function raycast_vert(pt, angle, y1, y2, x)
-    local dx = x-pt.x
-    local r = dx / math.cos(angle)
-    if r > 0 then
-        local y = pt.y+r*math.sin(angle)
-        if y >= y1 and y <= y2 then
-            return pt + Point(r*math.cos(angle), r*math.sin(angle))
-        end
-    end
 end
