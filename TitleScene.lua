@@ -5,170 +5,148 @@ local Point = sonnet.Point
 function TitleScene:initialize()
     self.boxes = List()
     
-    self.boxes:push{type='polygon', points={
-                        Point(40, 30),
-                        Point(60, 30),
-                        Point(30, 90),
-                        Point(10, 90),
-                }}
+    self.boxes:push{
+        Point(40, 20),
+        Point(60, 20),
+        Point(30, 80),
+        Point(10, 80),
+    }
 
-    self.boxes:push{type='polygon', points={
-                        Point(10, 90),
-                        Point(70, 90),
-                        Point(60, 110),
-                        Point(0, 110),
-                }}
+    self.boxes:push{
+        Point(10, 80),
+        Point(70, 80),
+        Point(60, 100),
+        Point(0, 100),
+    }
 
+    self.boxes:push{
+        Point(70, 100),
+        Point(110, 20),
+        Point(130, 20),
+        Point(90, 100),
+    }
 
-    self.boxes:push{type='polygon', points={
-                        Point(70, 110),
-                        Point(110, 30),
-                        Point(130, 30),
-                        Point(90, 110),
-                }}
+    self.boxes:push{
+        Point(110, 20),
+        Point(130, 20),
+        Point(170, 100),
+        Point(150, 100),
+    }
 
-    self.boxes:push{type='polygon', points={
-                        Point(110, 30),
-                        Point(130, 30),
-                        Point(170, 110),
-                        Point(150, 110),
-                }}
+    self.boxes:push{
+        Point(100, 80),
+        Point(140, 80),
+        Point(140, 60),
+        Point(100, 60),
+    }
 
-    self.boxes:push{type='polygon', points={
-                        Point(100, 90),
-                        Point(140, 90),
-                        Point(140, 70),
-                        Point(100, 70),
-                }}
+    self.boxes:push{
+        Point(45, 10),
+        Point(240, 10),
+        Point(240, 0),
+        Point(50, 0),
+    }
 
-    self.boxes:push{type='polygon', points={
-                        Point(45, 20),
-                        Point(240, 20),
-                        Point(240, 10),
-                        Point(50, 10),
-                }}
+    self.boxes:push{
+        Point(230, 0),
+        Point(250, 0),
+        Point(190, 120),
+        Point(170, 120),
+    }
 
-    self.boxes:push{type='polygon', points={
-                        Point(230, 10),
-                        Point(250, 10),
-                        Point(190, 130),
-                        Point(170, 130),
-                }}
+    self.boxes:push{
+        Point(190, 110),
+        Point(415, 110),
+        Point(410, 120),
+        Point(190, 120),
+    }
 
-    self.boxes:push{type='polygon', points={
-                        Point(190, 120),
-                        Point(415, 120),
-                        Point(410, 130),
-                        Point(190, 130),
-                }}
+    self.boxes:push{
+        Point(220, 100),
+        Point(260, 20),
+        Point(280, 20),
+        Point(240, 100),
+    }
 
-    self.boxes:push{type='polygon', points={
-                        Point(220, 110),
-                        Point(260, 30),
-                        Point(280, 30),
-                        Point(240, 110),
-                }}
+    self.boxes:push{
+        Point(220, 100),
+        Point(230, 80),
+        Point(290, 80),
+        Point(280, 100),
+    }
 
-    self.boxes:push{type='polygon', points={
-                        Point(220, 110),
-                        Point(230, 90),
-                        Point(290, 90),
-                        Point(280, 110),
-                }}
+    self.boxes:push{
+        Point(260, 20),
+        Point(320, 20),
+        Point(310, 40),
+        Point(260, 40),
+    }
 
-    self.boxes:push{type='polygon', points={
-                        Point(260, 30),
-                        Point(320, 30),
-                        Point(310, 50),
-                        Point(260, 50),
-                }}
+    self.boxes:push{
+        Point(255, 70),
+        Point(265, 50),
+        Point(285, 50),
+        Point(275, 70),
+    }
 
-    self.boxes:push{type='polygon', points={
-                        Point(255, 80),
-                        Point(265, 60),
-                        Point(285, 60),
-                        Point(275, 80),
-                }}
+    self.boxes:push{
+        Point(290, 100),
+        Point(330, 20),
+        Point(350, 20),
+        Point(310, 100),
+    }
 
-    self.boxes:push{type='polygon', points={
-                        Point(290, 110),
-                        Point(330, 30),
-                        Point(350, 30),
-                        Point(310, 110),
-                }}
+    self.boxes:push{
+        Point(330, 20),
+        Point(390, 20),
+        Point(380, 40),
+        Point(320, 40),
+    }
 
-    self.boxes:push{type='polygon', points={
-                        Point(330, 30),
-                        Point(390, 30),
-                        Point(380, 50),
-                        Point(320, 50),
-                }}
+    self.boxes:push{
+        Point(315, 50),
+        Point(375, 50),
+        Point(365, 70),
+        Point(305, 70),
+    }
 
-    self.boxes:push{type='polygon', points={
-                        Point(315, 60),
-                        Point(375, 60),
-                        Point(365, 80),
-                        Point(305, 80),
-                }}
+    self.boxes:push{
+        Point(360, 40),
+        Point(380, 40),
+        Point(375, 50),
+        Point(355, 50),
+    }
 
-    self.boxes:push{type='polygon', points={
-                        Point(360, 50),
-                        Point(380, 50),
-                        Point(375, 60),
-                        Point(355, 60),
-                }}
+    self.boxes:push{
+        Point(335, 70),
+        Point(355, 70),
+        Point(355, 100),
+        Point(335, 100),
+    }
 
-    self.boxes:push{type='polygon', points={
-                        Point(335, 80),
-                        Point(355, 80),
-                        Point(355, 110),
-                        Point(335, 110),
-                }}
+    self.boxes:push{
+        Point(360, 100),
+        Point(370, 80),
+        Point(430, 80),
+        Point(420, 100),
+    }
 
-    self.boxes:push{type='polygon', points={
-                        Point(360, 110),
-                        Point(370, 90),
-                        Point(430, 90),
-                        Point(420, 110),
-                }}
+    self.boxes:push{
+        Point(410, 80),
+        Point(390, 40),
+        Point(410, 40),
+        Point(430, 80),
+    }
 
-    self.boxes:push{type='polygon', points={
-                        Point(410, 90),
-                        Point(390, 50),
-                        Point(410, 50),
-                        Point(430, 90),
-                }}
-
-    self.boxes:push{type='polygon', points={
-                        Point(390, 50),
-                        Point(400, 30),
-                        Point(460, 30),
-                        Point(450, 50),
-                }}
-
-    -- self.boxes = List()
-
-    -- self.boxes:push{type='rectangle', topleft=Point(10, 10), size=Point(32, 32)}
-    -- self.boxes:push{type='rectangle', topleft=Point(50, 10), size=Point(32, 32)}
-    -- self.boxes:push{type='rectangle', topleft=Point(90, 10), size=Point(32, 32)}
-
-    -- self.boxes:push{type='rectangle', topleft=Point(10, 50), size=Point(32, 32)}
-    -- self.boxes:push{type='rectangle', topleft=Point(50, 50), size=Point(32, 32)}
-    -- self.boxes:push{type='rectangle', topleft=Point(90, 50), size=Point(32, 32)}
-
-    -- self.boxes:push{type='rectangle', topleft=Point(10, 90), size=Point(32, 32)}
-    -- self.boxes:push{type='rectangle', topleft=Point(50, 90), size=Point(32, 32)}
-    -- self.boxes:push{type='rectangle', topleft=Point(90, 90), size=Point(32, 32)}
-
-    -- self.boxes:push{type='rectangle', topleft=Point(200, 200), size=Point(100, 100)}
-
-    -- self.boxes:push{type='polygon', points={
-    --                     Point(400, 200),
-    --                     Point(500, 100),
-    --                     Point(500, 200),
-    --             }}
+    self.boxes:push{
+        Point(390, 40),
+        Point(400, 20),
+        Point(460, 20),
+        Point(450, 40),
+    }
 
     self.player = {loc=Point(400, 300), angle=-math.pi/2}
+    self.logo = love.graphics.newImage('logo.png')
 end
 
 function TitleScene:on_install()
@@ -198,22 +176,8 @@ end
 function TitleScene:draw()
     local g = love.graphics
 
-    g.setColor(75, 75, 75)
-    for _, box in self.boxes:each() do
-        if box.type == 'rectangle' then
-            g.rectangle('fill',
-                        box.topleft.x, box.topleft.y,
-                        box.size.x, box.size.y)
-        elseif box.type == 'polygon' then
-            local pts = {}
-            for _, p in ipairs(box.points) do
-                pts[#pts+1] = p.x
-                pts[#pts+1] = p.y
-            end
-
-            g.polygon('fill', unpack(pts))
-        end
-    end
+    g.setColor(255, 255, 255, 255)
+    g.draw(self.logo, 0, 0)
 
     g.setColor(140, 180, 160)
     g.circle('fill',
@@ -247,14 +211,7 @@ function raycast(pt, angle, shapes)
 
     for _, shape in shapes:each() do
         local pi
-        if shape.type == 'rectangle' then
-            pi = sonnet.Raycast.rectangle(pt, rvec,
-                                          shape.topleft,
-                                          shape.size)
-        elseif shape.type == 'polygon' then
-            pi = sonnet.Raycast.polygon(pt, rvec,
-                                        unpack(shape.points))
-        end
+        pi = sonnet.Raycast.polygon(pt, rvec, unpack(shape))
         if #pi > 0 then intersections:push(pi) end
     end
 
