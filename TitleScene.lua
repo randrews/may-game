@@ -12,7 +12,12 @@ function TitleScene:initialize()
     self.logo_x = w/2-lw/2
     self.logo_y = sonnet.Tween(0, h/3-lh/2, 5)
 
-    self.player = {loc=Point(400, 300), angle=-math.pi/2}
+    self.lasers = List()
+
+    for n = 1, 10 do
+        self.lasers:push(Laser(Point(0,n*50), Point(1,-0.2)))
+        self.lasers:push(Laser(Point(800,n*50), Point(-1,-0.2)))
+    end
 end
 
 function TitleScene:on_install()
@@ -20,23 +25,7 @@ function TitleScene:on_install()
 end
 
 function TitleScene:update(dt)
-    local k = love.keyboard.isDown
-    local p = Point(0,0)
-
-    if k('left') then p.x = p.x-1 end
-    if k('up') then p.y = p.y-1 end
-    if k('down') then p.y = p.y+1 end
-    if k('right') then p.x = p.x+1 end
-    p = p:normal()
-
-    self.player.loc = self.player.loc + p * dt * 128
-
-    if k('a') then
-        self.player.angle = self.player.angle - dt*math.pi/2
-    end
-    if k('e') or k('d') then
-        self.player.angle = self.player.angle + dt*math.pi/2
-    end
+    self.lasers:method_each('update', dt)
 end
 
 function TitleScene:draw()
@@ -45,49 +34,15 @@ function TitleScene:draw()
     g.setColor(255, 255, 255, 255)
     g.draw(self.logo, self.logo_x, self.logo_y.value)
 
-    g.setColor(140, 180, 160)
-    g.circle('fill',
-             self.player.loc.x, self.player.loc.y,
-             10)
-    g.setColor(255, 0, 0)
-    local ex = self.player.loc.x + math.cos(self.player.angle)*32
-    local ey = self.player.loc.y + math.sin(self.player.angle)*32
-    g.line(self.player.loc.x, self.player.loc.y, ex, ey)
-
-
     local polygons = self:translate_shapes(self.original_polygons,
                                            Point(self.logo_x, self.logo_y.value))
 
-    local i = self:raycast(self.player.loc,
-                           self.player.angle,
-                           polygons)
-
-    g.setColor(0, 255, 0)
-    for _, shape in i:each() do
-        for _, pt in ipairs(shape) do
-            g.circle('fill', pt.x, pt.y, 2)
-        end
-    end
+    Laser.polygons = polygons
+    self.lasers:method_each('draw')
 end
 
 function TitleScene:keypressed(key)
     if key == 'escape' then love.event.quit() end
-end
-
-----------------------------------------
-
-function TitleScene:raycast(pt, angle, shapes)
-    local rvec = Point(math.cos(angle), math.sin(angle))
-
-    local intersections = List()
-
-    for _, shape in shapes:each() do
-        local pi
-        pi = sonnet.Raycast.polygon(pt, rvec, unpack(shape))
-        if #pi > 0 then intersections:push(pi) end
-    end
-
-    return intersections
 end
 
 function TitleScene:translate_shapes(shapes, delta)
