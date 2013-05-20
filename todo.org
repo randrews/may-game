@@ -1,0 +1,18 @@
+* Tasks and deadlines
+** Title-screen
+   So, have these by the end of the week
+*** Lasers changing angle
+*** Buttons: exit, start game
+** First level
+   So, by next Monday
+*** Loading level from file
+*** Drawing level, with lasers
+*** Level exit
+** Level sequence
+   So, end of the month
+*** Going to the next level
+*** Gems to unlock the door
+** Bonus
+*** Background effect
+*** Door vortex effect
+*** Level codes
