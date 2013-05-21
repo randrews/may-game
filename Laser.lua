@@ -13,8 +13,8 @@ Laser.image = nil
 
 --- ## initialize
 ---
---- Both location and direction are points; location
---- is treated as a point and direction as a vector.
+--- Location is a point; direction can be either a point
+-- (treated as a vector) or a Tween.
 
 function Laser:initialize(location, direction)
     self.loc = location
@@ -28,7 +28,8 @@ function Laser:init_particles()
     end
 
     local particles = love.graphics.newParticleSystem(Laser.image, 500)
-    particles:setEmissionRate(0)
+    self.er = 0
+    particles:setEmissionRate(self.er)
 
     particles:setColors(
         255, 255, 255, 255, -- start
@@ -54,13 +55,17 @@ function Laser:update(dt)
 
     -- We have a particle system, but no target, so stop sparks
     if self.particles and not self.target then
-        self.particles:setEmissionRate(0)
+        self.er = 0
+        self.particles:setEmissionRate(self.er)
     end
 
     -- We have a target, so throw sparks off it
     if self.target then
         self.particles:setPosition(self.target())
-        self.particles:setEmissionRate(50)
+        if self.er < 50 then
+            self.er = self.er + 5
+            self.particles:setEmissionRate(self.er)
+        end
     end
 
     -- Not aimed at anything, so point us offscreen
@@ -101,8 +106,11 @@ function Laser:endpoint()
     local closest = nil
     local closest_dist = nil
 
+    local dir = self.dir
+    if dir.value then dir = Point.from_angle(dir.value) end
+
     for _, shape in Laser.polygons:each() do
-        local pi = sonnet.Raycast.polygon(self.loc, self.dir, unpack(shape))
+        local pi = sonnet.Raycast.polygon(self.loc, dir, unpack(shape))
         for _, i in ipairs(pi) do
             
             if not closest or self.loc:dist(i, closest_dist) then
@@ -120,7 +128,10 @@ end
 --- Returns where the laser hits the edge of the screen
 
 function Laser:offscreen()
-    local isects = sonnet.Raycast.rectangle(self.loc, self.dir,
+    local dir = self.dir
+    if dir.value then dir = Point.from_angle(dir.value) end
+
+    local isects = sonnet.Raycast.rectangle(self.loc, dir,
                                             Point(0,0), Point(800,600))
     return isects[#isects]
 end

@@ -1,7 +1,7 @@
 * Tasks and deadlines
 ** Title-screen
    So, have these by the end of the week
-*** Lasers changing angle
+*** DONE Lasers changing angle
 *** Buttons: exit, start game
 ** First level
    So, by next Monday

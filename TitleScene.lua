@@ -14,9 +14,12 @@ function TitleScene:initialize()
 
     self.lasers = List()
 
+    local left_loop = sonnet.Tween.loop(3, math.pi/4, math.pi/2)
+    local right_loop = sonnet.Tween.loop(3, 3*math.pi/4, math.pi/2)
+
     for n = 1, 10 do
-        self.lasers:push(Laser(Point(0,n*50), Point(1,-0.2)))
-        self.lasers:push(Laser(Point(800,n*50), Point(-1,-0.2)))
+        self.lasers:push(Laser(Point(n*40, 599), left_loop))
+        self.lasers:push(Laser(Point(n*40 + 400, 599), right_loop))
     end
 end
 
